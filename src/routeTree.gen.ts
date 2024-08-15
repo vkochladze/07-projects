@@ -11,11 +11,17 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as HomeImport } from './routes/Home'
 import { Route as EditProjectImport } from './routes/EditProject'
 import { Route as AddProjectImport } from './routes/AddProject'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
+
+const HomeRoute = HomeImport.update({
+  path: '/Home',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const EditProjectRoute = EditProjectImport.update({
   path: '/EditProject',
@@ -57,6 +63,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EditProjectImport
       parentRoute: typeof rootRoute
     }
+    '/Home': {
+      id: '/Home'
+      path: '/Home'
+      fullPath: '/Home'
+      preLoaderRoute: typeof HomeImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -66,6 +79,7 @@ export const routeTree = rootRoute.addChildren({
   IndexRoute,
   AddProjectRoute,
   EditProjectRoute,
+  HomeRoute,
 })
 
 /* prettier-ignore-end */
@@ -78,7 +92,8 @@ export const routeTree = rootRoute.addChildren({
       "children": [
         "/",
         "/AddProject",
-        "/EditProject"
+        "/EditProject",
+        "/Home"
       ]
     },
     "/": {
@@ -89,6 +104,9 @@ export const routeTree = rootRoute.addChildren({
     },
     "/EditProject": {
       "filePath": "EditProject.tsx"
+    },
+    "/Home": {
+      "filePath": "Home.tsx"
     }
   }
 }
