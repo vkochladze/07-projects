@@ -10,7 +10,6 @@ export default function Sidebar() {
     }
     const [projects] = contextValue;
 
-
     return (
         <aside className="p-10 bg-slate-800 h-screen w-1/6">
             <h1 className="text-sky-100 scroll-m-20 pt-10 pb-5 text-3xl font-semibold tracking-tight uppercase">
@@ -24,7 +23,7 @@ export default function Sidebar() {
 
             <ul className="text-sky-100 p-3">
                 {projects.map((project) => {
-                    return <li key={project.id}>{project.name}</li>
+                    return <li key={project.id}><Link to={`/EditProject?id=${project.id}`}>{project.name}</Link></li>
                 })}
             </ul>
         </aside>

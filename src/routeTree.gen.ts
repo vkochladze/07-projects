@@ -11,76 +11,18 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as HomeImport } from './routes/Home'
-import { Route as EditProjectImport } from './routes/EditProject'
-import { Route as AddProjectImport } from './routes/AddProject'
-import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
-
-const HomeRoute = HomeImport.update({
-  path: '/Home',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const EditProjectRoute = EditProjectImport.update({
-  path: '/EditProject',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const AddProjectRoute = AddProjectImport.update({
-  path: '/AddProject',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const IndexRoute = IndexImport.update({
-  path: '/',
-  getParentRoute: () => rootRoute,
-} as any)
 
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
-  interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/AddProject': {
-      id: '/AddProject'
-      path: '/AddProject'
-      fullPath: '/AddProject'
-      preLoaderRoute: typeof AddProjectImport
-      parentRoute: typeof rootRoute
-    }
-    '/EditProject': {
-      id: '/EditProject'
-      path: '/EditProject'
-      fullPath: '/EditProject'
-      preLoaderRoute: typeof EditProjectImport
-      parentRoute: typeof rootRoute
-    }
-    '/Home': {
-      id: '/Home'
-      path: '/Home'
-      fullPath: '/Home'
-      preLoaderRoute: typeof HomeImport
-      parentRoute: typeof rootRoute
-    }
-  }
+  interface FileRoutesByPath {}
 }
 
 // Create and export the route tree
 
-export const routeTree = rootRoute.addChildren({
-  IndexRoute,
-  AddProjectRoute,
-  EditProjectRoute,
-  HomeRoute,
-})
+export const routeTree = rootRoute.addChildren({})
 
 /* prettier-ignore-end */
 
@@ -89,24 +31,7 @@ export const routeTree = rootRoute.addChildren({
   "routes": {
     "__root__": {
       "filePath": "__root.tsx",
-      "children": [
-        "/",
-        "/AddProject",
-        "/EditProject",
-        "/Home"
-      ]
-    },
-    "/": {
-      "filePath": "index.tsx"
-    },
-    "/AddProject": {
-      "filePath": "AddProject.tsx"
-    },
-    "/EditProject": {
-      "filePath": "EditProject.tsx"
-    },
-    "/Home": {
-      "filePath": "Home.tsx"
+      "children": []
     }
   }
 }

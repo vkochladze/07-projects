@@ -1,7 +1,8 @@
 import './index.css'
 import Sidebar from './Components/Sidebar'
-import Home from './routes/Home'
-import AddProject from './routes/AddProject'
+import Home from './Pages/Home'
+import AddProject from './Pages/AddProject'
+import EditProject from './Pages/EditProject'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { createContext, Dispatch, SetStateAction, useEffect, useState } from 'react'
 
@@ -18,8 +19,8 @@ export const Context = createContext<ProjectContextType | undefined>(undefined);
 
 function App() {
   const [project, setProjects] = useState([
-    { id: 0, name: 'Learning React', description: '', dueDate: '' },
-    { id: 1, name: 'Mastering React', description: '', dueDate: '' },
+    { id: 0, name: 'Learning React', description: 'Learning React Description', dueDate: '2024-03-02' },
+    { id: 1, name: 'Mastering React', description: 'Mastering React Description', dueDate: '2024-02-01' },
   ]);
 
 
@@ -35,7 +36,8 @@ function App() {
           <Routes>
             <Route index element={<Home />} />
             <Route path='/' element={<Home />} />
-            <Route path='addProject' element={<AddProject />} />
+            <Route path='AddProject' element={<AddProject />} />
+            <Route path='EditProject' element={<EditProject />} />
           </Routes>
         </div>
       </Context.Provider>
