@@ -1,28 +1,34 @@
 import { useContext, useState } from "react";
 import { Context } from "../App"
+import { useNavigate } from "react-router-dom";
+
+type Project = {
+  id: number,
+  name: string,
+  desc: string,
+  dueDate: string
+}
 
 export default function AddProject() {
+  const navigate = useNavigate();
 
   const contextValue = useContext(Context);
   if (!contextValue) {
     throw new Error('Context was undefined')
   }
   const [projects, setProjects] = contextValue;
-  const [name, setName] = useState<string>('');
-  const [desc, setDesc] = useState<string>('');
-  const [dueDate, setDueDate] = useState<string>('');
+  const [newProject, setNewProject] = useState<Project>({
+    id: projects.length,
+    name: '',
+    desc: '',
+    dueDate: ''
+  });
 
-  function handleChange(inputName: string, event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
-    const inputText = event.target.value;
-    if (inputName === "title") {
-      setName(inputText);
-    }
-    if (inputName === "desc") {
-      setDesc(inputText);
-    }
-    if (inputName === "dueDate") {
-      setDueDate(inputText);
-    }
+  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
+    setNewProject({
+      ...newProject,
+      [e.target.name]: e.target.value
+    })
   }
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -30,7 +36,7 @@ export default function AddProject() {
 
     setProjects(prevProjects => [
       ...prevProjects,
-      { id: projects.length, name: name, description: desc, dueDate: dueDate }
+      { id: newProject.id, name: newProject.name, description: newProject.desc, dueDate: newProject.dueDate }
     ])
   }
 
@@ -39,12 +45,13 @@ export default function AddProject() {
       <div className='w-1/3 p-10'>
         <h1 className='scroll-m-20 border-b text-3xl font-semibold tracking-tight'>Add a new project</h1>
 
-        <form className='' onSubmit={handleSubmit}>
+        <form className='' onSubmit={handleSubmit} onReset={() => navigate('/')}>
           <div className="grid gap-6 mb-6 grid-cols-1 mt-7">
             <div>
-              <label htmlFor="title" className="block mb-2 text-sm font-medium text-gray-900 dark:text-slate-800">Title</label>
+              <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-slate-800">Name</label>
               <input
-                onChange={(e) => handleChange('title', e)}
+                name="name"
+                onChange={handleChange}
                 type="text" id="title"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Project title" required />
             </div>
@@ -52,7 +59,8 @@ export default function AddProject() {
             <div>
               <label htmlFor="desc" className="block mb-2 text-sm font-medium text-gray-900 dark:text-slate-800">Description</label>
               <textarea
-                onChange={(e) => handleChange('desc', e)}
+                name="desc"
+                onChange={handleChange}
                 id="desc"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Project description" required />
             </div>
@@ -60,7 +68,8 @@ export default function AddProject() {
             <div>
               <label htmlFor="date" className="block mb-2 text-sm font-medium text-gray-900 dark:text-slate-800">Due Date</label>
               <input
-                onChange={(e) => handleChange('dueDate', e)}
+                name="due-date"
+                onChange={handleChange}
                 type="date" id="date"
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
             </div>
