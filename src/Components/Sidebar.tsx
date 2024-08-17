@@ -11,7 +11,7 @@ export default function Sidebar() {
     const [projects] = contextValue;
 
     return (
-        <aside className="p-10 bg-slate-800 h-screen w-1/6">
+        <aside className="pr-10 pl-10 pt-5 mt-5 bg-slate-800 h-screen w-1/6 min-w-80 rounded-r-3xl">
             <h1 className="text-sky-100 hover:text-white scroll-m-20 pt-10 pb-5 text-3xl font-semibold tracking-tight transition-all uppercase">
                 <Link to='/'>Your Projects</Link>
             </h1>
@@ -23,7 +23,7 @@ export default function Sidebar() {
                 {projects.map((project) => {
                     return (
                         <div key={project.id} className="flex gap-3">
-                            <li key={project.id}>{project.name}</li>
+                            <li key={project.id}><Link to={`/Project?id=${project.id}`} className="hover:text-white">{project.name}</Link></li>
                             <Link className="text-amber-400 hover:text-amber-300" to={`/EditProject?id=${project.id}`}>Edit</Link>
                         </div>
                     )

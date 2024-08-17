@@ -4,7 +4,9 @@ import Home from './Pages/Home'
 import AddProject from './Pages/AddProject'
 import EditProject from './Pages/EditProject'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import { createContext, Dispatch, SetStateAction, useEffect, useState } from 'react'
+import { createContext, Dispatch, SetStateAction, useState } from 'react'
+import NotFound from './Pages/NotFound'
+import ProjectDetails from './Pages/ProjectDetails'
 
 type ProjectContextType = [Project[], Dispatch<SetStateAction<Project[]>>];
 type Project = {
@@ -12,21 +14,34 @@ type Project = {
   name: string,
   description: string,
   dueDate: string,
+  tasks: Tasks[]
+}
+
+type Tasks = {
+  id: number,
+  taskName: string
 }
 
 
 export const Context = createContext<ProjectContextType | undefined>(undefined);
 
 function App() {
-  const [project, setProjects] = useState([
-    { id: 0, name: 'Learning React', description: 'Learning React Description', dueDate: '2024-03-02' },
-    { id: 1, name: 'Mastering React', description: 'Mastering React Description', dueDate: '2024-02-01' },
-  ]);
+  // const [project, setProjects] = useState([
+  //   {
+  //     id: 0, name: 'Learning React', description: 'Learning React from the ground up', dueDate: '2024-03-02', tasks: [
+  //       { id: 0, taskName: 'Task 1' },
+  //       { id: 1, taskName: 'Task 2' }
+  //     ]
+  //   },
+  //   {
+  //     id: 1, name: 'Mastering React', description: 'Mastering React Description', dueDate: '2024-02-01', tasks: [
+  //       { id: 0, taskName: 'Task 3' },
+  //       { id: 1, taskName: 'Task 4' }
+  //     ]
+  //   },
+  // ]);
 
-
-  useEffect(() => {
-    console.log(project);
-  }, [project])
+  const [project, setProjects] = useState<Project[]>([]);
 
   return (
     <Router>
@@ -38,6 +53,8 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='AddProject' element={<AddProject />} />
             <Route path='EditProject' element={<EditProject />} />
+            <Route path='Project' element={<ProjectDetails />} />
+            <Route path='*' element={<NotFound />} />
           </Routes>
         </div>
       </Context.Provider>
