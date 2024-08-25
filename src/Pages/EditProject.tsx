@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { Context } from "../App"
-import { useSearchParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import TextareaAutosize from 'react-textarea-autosize';
+import { Context } from "../App";
 
 const editCSS = 'text-slate-900 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center'
 const saveCSS = 'text-white bg-blue-950 hover:bg-blue-900 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center'
@@ -120,7 +120,9 @@ export default function EditProject() {
 
               <div>
                 <label htmlFor="desc" className="block mb-2 text-sm font-medium text-gray-900 dark:text-slate-800">Description</label>
-                <textarea
+
+                <TextareaAutosize
+                  minRows={5}
                   name="desc"
                   value={editedProject.desc}
                   onChange={handleChange}

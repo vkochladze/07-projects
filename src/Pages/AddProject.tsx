@@ -1,6 +1,8 @@
 import { useContext, useState } from "react";
 import { Context } from "../App"
 import { useNavigate } from "react-router-dom";
+import TextareaAutosize from 'react-textarea-autosize';
+
 
 type Project = {
   id: number,
@@ -70,7 +72,8 @@ export default function AddProject() {
 
             <div>
               <label htmlFor="desc" className="block mb-2 text-sm font-medium text-gray-900 dark:text-slate-800">Description</label>
-              <textarea
+              <TextareaAutosize
+                minRows={5}
                 name="desc"
                 onChange={handleChange}
                 id="desc"

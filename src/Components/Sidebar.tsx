@@ -1,6 +1,6 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../App";
-import { useContext } from "react";
 
 
 export default function Sidebar() {
@@ -11,7 +11,7 @@ export default function Sidebar() {
     const [projects] = contextValue;
 
     return (
-        <aside className="pr-10 pl-10 pt-5 mt-5 bg-slate-800 h-screen w-1/6 min-w-80 rounded-r-3xl">
+        <aside className="pr-10 pl-10 pt-5 mt-5 bg-slate-800 h-screen w-1/6 min-w-80 rounded-tr-3xl">
             <h1 className="text-sky-100 hover:text-white scroll-m-20 pt-10 pb-5 text-3xl font-semibold tracking-tight transition-all uppercase">
                 <Link to='/'>Your Projects</Link>
             </h1>

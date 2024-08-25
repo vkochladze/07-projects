@@ -7,3 +7,9 @@ body,
 #root {
     height: 100%
 } */
+
+#root {
+    background: url('/public/BG.png');
+    background-repeat: no-repeat;
+    background-position: 160% 50%;
+}

@@ -1,7 +1,6 @@
 import { useContext, useState } from "react";
-import { Context } from "../App"
-import { useSearchParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { Context } from "../App";
 
 export default function ProjectDetails() {
 
@@ -55,12 +54,14 @@ export default function ProjectDetails() {
     <>
       <div className='w-1/3 p-10 mt-10'>
         <div className="border-b pb-5">
-          <div className="flex justify-between">
-            <h1 className='scroll-m-20 border-b text-3xl font-semibold tracking-tight'>Project details: {currentProject.name}</h1>
+          <div className="flex justify-between border-b">
+            <h1 className='scroll-m-20 text-3xl font-semibold tracking-tight'>Project details: {currentProject.name}</h1>
             <button onClick={deleteProject} className="text-red-600 hover:text-red-500">Delete</button>
           </div>
-          <p className="pt-3 text-base text-slate-500">{currentProject.dueDate}</p>
-          <p className="pt-3">{currentProject.description}</p>
+          <div className="ml-2 pb-2">
+            <p className="pt-2 text-base text-slate-500">{currentProject.dueDate}</p>
+            <p className="pt-4">{currentProject.description}</p>
+          </div>
         </div>
 
         <div>
@@ -78,7 +79,7 @@ export default function ProjectDetails() {
                 return (
                   <div key={task.id} className="flex justify-between pt-3 pb-3">
                     <li>{task.taskName}</li>
-                    <button onClick={() => clearTask(task.id)} className="hover:text-red-200">Clear</button>
+                    <button onClick={() => clearTask(task.id)} className="hover:text-red-300">Clear</button>
                   </div>
                 )
               })}
