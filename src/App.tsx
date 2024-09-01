@@ -8,6 +8,9 @@ import Home from './Pages/Home'
 import NotFound from './Pages/NotFound'
 import ProjectDetails from './Pages/ProjectDetails'
 
+// localStorage.setItem('theme', 'light');
+
+
 type ProjectContextType = [Project[], Dispatch<SetStateAction<Project[]>>];
 type Project = {
   id: number,

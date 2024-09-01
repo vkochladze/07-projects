@@ -55,21 +55,21 @@ export default function ProjectDetails() {
       <div className='w-1/3 p-10 mt-10'>
         <div className="border-b pb-5">
           <div className="flex justify-between border-b">
-            <h1 className='scroll-m-20 text-3xl font-semibold tracking-tight'>Project details: {currentProject.name}</h1>
+            <h1 className='scroll-m-20 text-3xl font-semibold tracking-tight dark:text-sky-50'>Project details: {currentProject.name}</h1>
             <button onClick={deleteProject} className="text-red-600 hover:text-red-500">Delete</button>
           </div>
           <div className="ml-2 pb-2">
             <p className="pt-2 text-base text-slate-500">{currentProject.dueDate}</p>
-            <p className="pt-4">{currentProject.description}</p>
+            <p className="pt-4 dark:text-sky-50">{currentProject.description}</p>
           </div>
         </div>
 
         <div>
-          <h1 className='pt-5 scroll-m-20 text-3xl font-semibold tracking-tight'>Tasks</h1>
+          <h1 className='pt-5 scroll-m-20 text-3xl font-semibold tracking-tight dark:text-sky-50'>Tasks</h1>
           <div className="flex gap-5 pt-5 pb-5">
             <form action="" onSubmit={addTask} className="flex w-full gap-4">
               <input placeholder="Enter task name..." value={task} onChange={handleChange} className="bg-slate-700 h-9 w-2/4 rounded-md shadow-sm p-3 text-sm text-sky-100" type="text" name="add-task" id="add-task" required />
-              <button type="submit" className="hover:text-slate-700">Add Task</button>
+              <button type="submit" className="hover:text-slate-700 dark:text-sky-50">Add Task</button>
             </form>
           </div>
           <div className="w-100 bg-slate-700 rounded-md p-4 text-sky-100">

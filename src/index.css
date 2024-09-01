@@ -8,8 +8,12 @@ body,
     height: 100%
 } */
 
-#root {
-    background: url('/public/BG.png');
+/* #root {
+    background: url('/BG.png');
     background-repeat: no-repeat;
     background-position: 160% 50%;
+} */
+
+.dark {
+    background-color: #0f172a;
 }

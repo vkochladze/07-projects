@@ -1,17 +1,42 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import ReactSwitch from "react-switch";
 import { Context } from "../App";
 
-
 export default function Sidebar() {
+
+    const [theme, setTheme] = useState(localStorage.getItem('theme'))
+    const root = window.document.documentElement
+
     const contextValue = useContext(Context);
     if (!contextValue) {
         throw new Error('Context was undefined')
     }
     const [projects] = contextValue;
 
+    function themeMode() {
+        if (localStorage.getItem('theme') === 'light') {
+            localStorage.setItem('theme', 'dark')
+            setTheme('dark');
+        } else {
+            localStorage.setItem('theme', 'light')
+            setTheme('light');
+        }
+        console.log(localStorage);
+    }
+
+    useEffect(() => {
+        if (theme === 'dark') {
+            root.classList.add('dark')
+        } else {
+            root.classList.remove('dark')
+        }
+    }, [theme, root.classList])
+
     return (
         <aside className="pr-10 pl-10 pt-5 mt-5 bg-slate-800 h-screen w-1/6 min-w-80 rounded-tr-3xl">
+            <ReactSwitch checked={theme === 'dark'} onChange={themeMode} />
+            {/* <button onClick={themeMode} className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow mb-5 mt-5">Switch Theme</button> */}
             <h1 className="text-sky-100 hover:text-white scroll-m-20 pt-10 pb-5 text-3xl font-semibold tracking-tight transition-all uppercase">
                 <Link to='/'>Your Projects</Link>
             </h1>
