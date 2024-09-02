@@ -2,6 +2,27 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../App";
 
+type Project = {
+  id: number,
+  name: string,
+  description: string,
+  dueDate: string,
+  tasks: Tasks[]
+}
+
+type Tasks = {
+  id: number,
+  taskName: string
+}
+
+function checkOverDue(project: Project) {
+  if (Date.now() > Date.parse(project.dueDate)) {
+    return <p className="ml-2 pt-2 dark:text-sky-50"><span className='font-semibold'>Due by:</span> <span className='font-semibold'>{project.dueDate}</span> <span className="font-semibold text-red-500 italic">// Project overdue</span></p>;
+  } else {
+    return <p className="ml-2 pt-2 dark:text-sky-50"><span className='font-semibold'>Due by:</span> {project.dueDate}</p>
+  }
+}
+
 export default function Home() {
 
   const contextValue = useContext(Context);
@@ -28,13 +49,12 @@ export default function Home() {
                 <li key={project.id} className="mt-2 mb-5">
                   <Link to={`/Project?id=${project.id}`} className="font-bold text-xl border-b border-b-slate-400 pr-5 hover:text-slate-600 dark:text-sky-50">{project.name}</Link>
                   <p className="ml-2 pt-2 w-1/3 dark:text-sky-50"><span className="font-semibold">Description:</span> {project.description}</p>
-                  <p className="ml-2 pt-2 dark:text-sky-50"><span className="font-semibold">Due by:</span> {project.dueDate}</p>
+                  {checkOverDue(project)}
                 </li>)
             })}
           </ul>
         </>
       }
-
     </div>
   )
 }

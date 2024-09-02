@@ -134,7 +134,7 @@ export default function EditProject() {
               <div>
                 <label htmlFor="date" className="block mb-2 text-sm font-medium text-gray-900 dark:text-sky-50">Due Date</label>
                 <input
-                  name="due-date"
+                  name="dueDate"
                   value={editedProject.dueDate}
                   onChange={handleChange}
                   type="date" id="date"
