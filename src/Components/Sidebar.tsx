@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import ReactSwitch from "react-switch";
 import { Context } from "../App";
+import Switch from '../Switch';
 
 export default function Sidebar() {
 
@@ -34,9 +34,10 @@ export default function Sidebar() {
     }, [theme, root.classList])
 
     return (
-        <aside className="pr-10 pl-10 pt-5 mt-5 bg-slate-800 h-screen w-1/6 min-w-80 rounded-tr-3xl">
-            <ReactSwitch checked={theme === 'dark'} onChange={themeMode} />
-            {/* <button onClick={themeMode} className="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow mb-5 mt-5">Switch Theme</button> */}
+        <aside style={{ height: 'calc(100vh - 1.25rem)' }} className="pr-10 pl-10 pt-5 mt-5 bg-slate-800 w-1/6 min-w-80 rounded-tr-3xl">
+            {/* <Switch checked={theme === 'dark'} onChange={themeMode} onColor="fff" checkedHandleIcon={<img src="/dark.svg" />} uncheckedHandleIcon={<img src="/light.png" />} /> */}
+            <Switch checked={localStorage.getItem('theme') === 'dark'} onCheckedChange={themeMode} />
+
             <h1 className="text-sky-100 hover:text-white scroll-m-20 pt-10 pb-5 text-3xl font-semibold tracking-tight transition-all uppercase">
                 <Link to='/'>Your Projects</Link>
             </h1>
