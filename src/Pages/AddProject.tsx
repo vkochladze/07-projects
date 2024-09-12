@@ -1,8 +1,7 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import TextareaAutosize from 'react-textarea-autosize';
-import { Context } from "../App";
-
+import { ProjectContext } from "../project-context";
 
 type Project = {
   id: number,
@@ -21,7 +20,7 @@ type Tasks = {
 export default function AddProject() {
   const navigate = useNavigate();
 
-  const contextValue = useContext(Context);
+  const contextValue = useContext(ProjectContext);
   if (!contextValue) {
     throw new Error('Context was undefined')
   }

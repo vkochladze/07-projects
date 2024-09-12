@@ -1,14 +1,14 @@
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Context } from "../App";
 import Switch from '../Switch';
+import { ProjectContext } from './../project-context';
 
 export default function Sidebar() {
 
     const [theme, setTheme] = useState(localStorage.getItem('theme'))
     const root = window.document.documentElement
 
-    const contextValue = useContext(Context);
+    const contextValue = useContext(ProjectContext);
     if (!contextValue) {
         throw new Error('Context was undefined')
     }

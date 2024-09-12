@@ -1,11 +1,11 @@
 import { useContext, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { Context } from "../App";
+import { ProjectContext } from './../project-context';
 
 export default function ProjectDetails() {
 
   const navigate = useNavigate();
-  const contextValue = useContext(Context);
+  const contextValue = useContext(ProjectContext);
   if (!contextValue) {
     throw new Error('Context was undefined')
   }
@@ -44,10 +44,14 @@ export default function ProjectDetails() {
   }
 
   function deleteProject() {
-    setProjects(prevProjects =>
-      prevProjects.filter(project => project.id != currentProject.id)
-    )
-    navigate('/')
+    const text = 'Are you sure you want to delete this project?'
+
+    if (confirm(text) === true) {
+      setProjects(prevProjects =>
+        prevProjects.filter(project => project.id != currentProject.id)
+      )
+      navigate('/')
+    }
   }
 
   return (

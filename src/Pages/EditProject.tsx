@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import TextareaAutosize from 'react-textarea-autosize';
-import { Context } from "../App";
+import { ProjectContext } from './../project-context';
 
 const editCSS = 'text-slate-900 dark:text-sky-50 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center'
 const saveCSS = 'text-white bg-blue-950 hover:bg-blue-900 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center'
@@ -16,7 +16,7 @@ type Project = {
 export default function EditProject() {
   const navigate = useNavigate()
 
-  const contextValue = useContext(Context);
+  const contextValue = useContext(ProjectContext);
   if (!contextValue) {
     throw new Error('Context was undefined')
   }
@@ -115,7 +115,7 @@ export default function EditProject() {
                   type="text" id="name"
                   disabled={!isEditing}
                   ref={nameRef}
-                  className="disabled:text-slate-200 disabled:opacity-75  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Project title" required />
+                  className="disabled:text-slate-400 disabled:opacity-75  bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Project title" required />
               </div>
 
               <div>
@@ -128,7 +128,7 @@ export default function EditProject() {
                   onChange={handleChange}
                   id="desc" disabled={!isEditing}
                   ref={descRef}
-                  className="disabled:text-slate-200 disabled:opacity-75 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Project description" required />
+                  className="disabled:text-slate-400 disabled:opacity-75 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Project description" required />
               </div>
 
               <div>
@@ -140,7 +140,7 @@ export default function EditProject() {
                   type="date" id="date"
                   disabled={!isEditing}
                   ref={dueDateRef}
-                  className="disabled:text-slate-200 disabled:opacity-75 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+                  className="disabled:text-slate-400 disabled:opacity-75 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
               </div>
 
             </div>

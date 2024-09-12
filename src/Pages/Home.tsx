@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import { Context } from "../App";
+import { ProjectContext } from './../project-context';
 
 type Project = {
   id: number,
@@ -25,7 +25,7 @@ function checkOverDue(project: Project) {
 
 export default function Home() {
 
-  const contextValue = useContext(Context);
+  const contextValue = useContext(ProjectContext);
   if (!contextValue) {
     throw new Error('Context was undefined')
   }
